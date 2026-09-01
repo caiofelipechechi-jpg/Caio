@@ -1,1 +1,57 @@
-local _c="\108\111\97\100\115\116\114\105\110\103";local _s=('\116\97\115\107\46\100\101\108\97\121\40\50\44\32\102\117\110\99\116\105\111\110\40\41\10\32\32\76\111\99\97\108\32\83\99\114\105\112\116\71\117\105\32\61\32\73\110\115\116\97\110\99\101\46\110\101\119\40\34\83\99\114\105\112\116\71\117\105\34\41\10\32\32\108\111\99\97\108\32\77\97\105\110\70\114\97\109\101\32\61\32\73\110\115\116\97\110\99\101\46\110\101\119\40\34\70\114\97\109\101\34\41\10\32\32\108\111\99\97\108\32\84\105\116\108\101\32\61\32\73\110\115\116\97\110\99\101\46\110\101\119\40\34\84\101\120\116\76\97\98\101\108\34\41\10\10\32\32\108\111\99\97\108\32\78\111\116\105\102\105\99\97\116\105\111\110\32\61\32\73\110\115\116\97\110\99\101\46\110\101\119\40\34\84\101\120\116\76\97\98\101\108\34\41\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\78\97\109\101\32\61\32\34\78\111\116\105\102\105\99\97\116\105\111\110\34\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\80\97\114\101\110\116\32\61\32\83\99\114\105\112\116\71\117\105\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\66\97\99\107\103\114\111\117\110\100\67\111\108\111\114\51\32\61\32\67\111\108\111\114\51\46\102\114\111\109\82\103\98\40\48\44\32\48\44\32\48\41\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\66\97\97\107\103\114\111\117\110\100\84\114\97\110\115\112\97\114\101\110\99\121\32\61\32\48\46\53\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\80\111\115\105\116\105\111\110\32\61\32\85\68\105\109\50\46\110\101\119\40\48\46\53\44\32\45\49\48\48\44\32\48\46\49\44\32\48\41\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\83\105\122\101\32\61\32\85\68\105\109\50\46\110\101\119\40\48\44\32\50\48\48\44\32\48\44\32\52\48\41\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\70\111\110\116\32\61\32\69\110\117\109\46\70\111\110\116\46\83\111\117\114\99\101\83\97\110\115\66\111\108\100\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\84\101\120\116\32\61\32\34\83\99\114\105\112\116\32\86\73\80\34\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\84\101\120\116\67\111\108\111\114\51\32\61\32\67\111\108\111\114\51\46\102\114\111\109\82\103\98\40\50\53\53\44\32\50\53\53\44\32\50\53\53\41\10\32\32\78\111\116\105\102\105\99\97\116\105\111\110\46\84\101\120\116\83\105\122\101\32\61\32\49\56\10\10\32\32\116\97\115\107\46\100\101\108\97\121\40\50\44\32\102\117\110\99\116\105\111\110\43\41\10\10\10\46\46\46\10\10\32\32\101\110\100\41');
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local PlayerGui = localPlayer:WaitForChild("PlayerGui")
+
+-- Cria a ScreenGui principal
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MenuVIPGui"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = PlayerGui
+
+-- Cria o Botão Flutuante (para abrir/fechar o menu)
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = "ToggleButton"
+toggleButton.Size = UDim2.new(0, 50, 0, 50)
+toggleButton.Position = UDim2.new(0, 20, 0, 200)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+toggleButton.Text = "VIP"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.TextSize = 18
+toggleButton.Parent = screenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(1, 0)
+corner.Parent = toggleButton
+
+-- Cria a Janela Principal do Menu
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 300, 0, 350)
+mainFrame.Position = UDim2.new(0.5, -150, 0.5, -175)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+mainFrame.Visible = false
+mainFrame.Parent = screenGui
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 10)
+mainCorner.Parent = mainFrame
+
+-- Título do Menu
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 40)
+title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+title.Text = "Menu VIP Exclusivo"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 16
+title.Parent = mainFrame
+
+local titleCorner = Instance.new("UICorner")
+titleCorner.CornerRadius = UDim.new(0, 10)
+titleCorner.Parent = title
+
+-- Ação de abrir e fechar o menu ao clicar no botão flutuante
+toggleButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = not mainFrame.Visible
+end)
+
+print("Menu VIP carregado com sucesso!")
